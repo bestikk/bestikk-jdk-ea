@@ -1,0 +1,19 @@
+= Bestikk JDK EA
+
+A simple tool to download and install JDK Early Access Releases
+
+== Install
+
+ $ npm i --save-dev bestikk-jdk-ea
+
+== Usage
+
+```javascript
+var jdkEA = require('bestikk-jdk-ea');
+
+// download and install the latest JDK 8 EA Release
+jdkEA.installJDK8EA('installDir');
+// download and install the latest JDK 9 EA Release
+jdkEA.installJDK9EA('installDir', callback); // <1>
+```
+<1> `installJDK8EA` and `installJDK9EA` functions have an optional `callback` argument.
