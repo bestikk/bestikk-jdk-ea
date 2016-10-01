@@ -31,6 +31,36 @@ var deleteFolderRecursive = function(path) {
   }
 };
 
+// https://github.com/jprichardson/node-fs-extra/blob/master/lib/mkdirs/mkdirs-sync.js
+var mkdirsSync = function(p, made) {
+  p = path.resolve(p);
+  try {
+    fs.mkdirSync(p);
+    made = made || p;
+  } catch (err0) {
+    switch (err0.code) {
+      case 'ENOENT' :
+        made = mkdirsSync(path.dirname(p), made);
+        mkdirsSync(p, made);
+        break;
+
+      // In the case of any other error, just see if there's a dir
+      // there already.  If so, then hooray!  If not, then something
+      // is borked.
+      default:
+        var stat;
+        try {
+          stat = fs.statSync(p);
+        } catch (err1) {
+          throw err0;
+        }
+        if (!stat.isDirectory()) throw err0;
+        break;
+    }
+  }
+  return made;
+}
+
 var execSync = function(command) {
   log.debug(command);
   if (!process.env.DRY_RUN) {
@@ -130,7 +160,7 @@ var install = function(installDir, jdkName, jdkDownloadURLFunction, callback) {
   async.series([
     function(callback) {
       deleteFolderRecursive(installDir);
-      mkdirSync(installDir);
+      mkdirsSync(installDir);
       callback();
     },
     function(callback) {
@@ -153,7 +183,7 @@ var install = function(installDir, jdkName, jdkDownloadURLFunction, callback) {
         callback();
       } else {
         log.task('uncompress ' + jdkName);
-        untar(jdkEADownloadDestination, jdkName, installDir, callback);
+        untar(jdkEADownloadDestination, '', installDir, callback);
       }
     }
   ], function() {
