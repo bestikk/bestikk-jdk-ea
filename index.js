@@ -177,7 +177,7 @@ var install = function(installDir, jdkName, jdkDownloadURLFunction, callback) {
     },
     function(callback) {
       if (isWin()) {
-        winInstallDir = installDir.replace(/\\\//, '\\\\');
+        winInstallDir = installDir.replace(/\\\//, '\\\\').replace(/\//, '\\\\');
         execSync(jdkEADownloadDestination + ' /s INSTALLDIR="%CD%\\' + winInstallDir + '"');
         waitWindowsInstallCompletion(installDir);
         callback();
