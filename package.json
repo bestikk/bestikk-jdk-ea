@@ -1,6 +1,6 @@
 {
   "name": "bestikk-jdk-ea",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple tool to download and install JDK Early Access Releases",
   "main": "index.js",
   "scripts": {
