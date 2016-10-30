@@ -1,12 +1,16 @@
-= Bestikk JDK EA
+# Bestikk JDK EA
+
+ifdef::env-github[]
+image:http://img.shields.io/npm/v/bestikk-jdk-ea.svg[npm version, link=https://www.npmjs.org/package/bestikk-jdk-ea]
+endif::[]
 
 A simple tool to download and install JDK Early Access Releases
 
-== Install
+## Install
 
  $ npm i --save-dev bestikk-jdk-ea
 
-== Usage
+## Usage
 
 ```javascript
 var jdkEA = require('bestikk-jdk-ea');
