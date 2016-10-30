@@ -1,6 +1,7 @@
 # Bestikk JDK EA
 
 ifdef::env-github[]
+image:http://img.shields.io/travis/bestikk/bestikk-jdk-ea.svg[Travis build status, link=https://travis-ci.org/bestikk/bestikk-jdk-ea]
 image:http://img.shields.io/npm/v/bestikk-jdk-ea.svg[npm version, link=https://www.npmjs.org/package/bestikk-jdk-ea]
 endif::[]
 
