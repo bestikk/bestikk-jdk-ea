@@ -19,6 +19,7 @@ var jdkEA = require('bestikk-jdk-ea');
 // download and install the latest JDK 8 EA Release in 'install/jdk8' directory
 jdkEA.installJDK8EA('install/jdk8');
 // download and install the latest JDK 9 EA Release in 'install/jdk9' directory
-jdkEA.installJDK9EA('install/jdk9', callback); // <1>
+jdkEA.installJDK9EA('install/jdk9')
+  .then(() => console.log(require('child_process').spawnSync('install/jdk9/bin/java', ['-version'], {encoding: 'utf8'}))); // <1>
 ```
-<1> `installJDK8EA` and `installJDK9EA` functions have an optional `callback` argument.
+<1> `installJDK8EA` and `installJDK9EA` returns a Promise.
